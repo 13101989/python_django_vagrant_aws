@@ -18,4 +18,8 @@ python manage.py startapp django_api
 
 # run django project
 python manage.py runserver 0.0.0.0:8000
+
+# generate and run migration
+python manage.py makemigrations django_api
+python manage.py migrate
 ```
