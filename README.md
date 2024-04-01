@@ -19,7 +19,7 @@ python manage.py startapp profiles_api
 # run django project
 python manage.py runserver 0.0.0.0:8000
 
-# generate and run migration
+# generate and run migration on db
 python manage.py makemigrations profiles_api
 python manage.py migrate
 
