@@ -53,8 +53,6 @@ resource "aws_instance" "django_app_ec2_instance" {
   key_name               = aws_key_pair.public_key.key_name
   security_groups        = [aws_security_group.django_app_security_group.name]
 
-  user_data = file("${path.module}/deploy_django_app.sh")
-
   tags = {
     Name = "DjangoAppInstance"
   }

@@ -26,4 +26,13 @@ sudo $PROJECT_BASE_PATH/venv/bin/python manage.py migrate
 sudo $PROJECT_BASE_PATH/venv/bin/python manage.py collectstatic --noinput
 
 # Configure supervisor
-sudo cp $PROJECT_BASE_PATH/deploy/supervisor_python_django.conf /etc/supervisor/conf.d/python_django.conf
+sudo cp $PROJECT_BASE_PATH/aws_terraform/deploy/supervisor_profiles_api.conf /etc/supervisor/conf.d/profiles_api.conf
+sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl restart profiles_api
+
+# Configure nginx
+sudo cp $PROJECT_BASE_PATH/aws_terraform/deploy/nginx_profiles_api.conf /etc/nginx/sites-available/profiles_api.conf
+sudo rm /etc/nginx/sites-enabled/default
+sudo ln -s /etc/nginx/sites-available/profiles_api.conf /etc/nginx/sites-enabled/profiles_api.conf
+sudo systemctl restart nginx
