@@ -21,7 +21,7 @@ sudo $PROJECT_BASE_PATH/venv/bin/pip install -r $PROJECT_BASE_PATH/requirements.
 sudo $PROJECT_BASE_PATH/venv/bin/pip install uwsgi==2.0.18
 
 # Run migrations and collectstatic
-sudo cd $PROJECT_BASE_PATH
+sudo -C $PROJECT_BASE_PATH
 sudo $PROJECT_BASE_PATH/venv/bin/python manage.py migrate
 sudo $PROJECT_BASE_PATH/venv/bin/python manage.py collectstatic --noinput
 
