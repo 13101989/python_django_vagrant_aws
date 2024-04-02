@@ -37,7 +37,7 @@ resource "tls_private_key" "access_key" {
 }
 
 output "private_key" {
-  value     = tls_private_key.access_key.private_key_pem
+  value     = tls_private_key.access_key.private_key_openssh
   sensitive = true
 }
 
