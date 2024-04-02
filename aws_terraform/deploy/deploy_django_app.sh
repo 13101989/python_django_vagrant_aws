@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sudo set -e
+set -e
 
 PROJECT_GIT_URL='https://github.com/13101989/python_django_vagrant_aws.git'
 PROJECT_BASE_PATH='/usr/local/apps/python_django_vagrant_aws'
@@ -14,16 +14,15 @@ sudo mkdir -p $PROJECT_BASE_PATH
 sudo git clone $PROJECT_GIT_URL $PROJECT_BASE_PATH
 
 # Create virtualenv
-sudo python3 -m venv $PROJECT_BASE_PATH/venv
+python3 -m venv $PROJECT_BASE_PATH/venv
 
 # Install python packages
-sudo $PROJECT_BASE_PATH/venv/bin/pip install -r $PROJECT_BASE_PATH/requirements.txt
-sudo $PROJECT_BASE_PATH/venv/bin/pip install uwsgi==2.0.18
+$PROJECT_BASE_PATH/venv/bin/pip install -r $PROJECT_BASE_PATH/requirements.txt
+$PROJECT_BASE_PATH/venv/bin/pip install uwsgi==2.0.18
 
 # Run migrations and collectstatic
-sudo -C $PROJECT_BASE_PATH
-sudo $PROJECT_BASE_PATH/venv/bin/python manage.py migrate
-sudo $PROJECT_BASE_PATH/venv/bin/python manage.py collectstatic --noinput
+cd $PROJECT_BASE_PATH && $PROJECT_BASE_PATH/venv/bin/python manage.py migrate
+cd $PROJECT_BASE_PATH && $PROJECT_BASE_PATH/venv/bin/python manage.py collectstatic --noinput
 
 # Configure supervisor
 sudo cp $PROJECT_BASE_PATH/aws_terraform/deploy/supervisor_profiles_api.conf /etc/supervisor/conf.d/profiles_api.conf
