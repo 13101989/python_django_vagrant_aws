@@ -2,7 +2,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "eu-north-1"
+  region = "eu-central-1"
 }
 
 
@@ -48,8 +48,8 @@ resource "aws_security_group" "django_app_security_group" {
 }
 
 resource "aws_instance" "django_app_ec2_instance" {
-  ami             = "ami-0d74f1e79c38f2933"
-  instance_type   = "t3.micro"
+  ami             = "ami-04f9a173520f395dd"
+  instance_type   = "t2.micro"
   key_name        = aws_key_pair.public_key.key_name
   security_groups = [aws_security_group.django_app_security_group.name]
 
