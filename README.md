@@ -25,4 +25,6 @@ python manage.py migrate
 
 # create django superuser
 python manage.py createsuperuser
+
+# use ModHeader extension and add the token into a Authorization field as Token <token_created> in order to be able to access the feeds endpoints.
 ```
