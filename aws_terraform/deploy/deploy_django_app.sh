@@ -21,8 +21,8 @@ $PROJECT_BASE_PATH/venv/bin/pip install -r $PROJECT_BASE_PATH/requirements.txt
 $PROJECT_BASE_PATH/venv/bin/pip install uwsgi==2.0.18
 
 # Run migrations and collectstatic
-cd $PROJECT_BASE_PATH && $PROJECT_BASE_PATH/venv/bin/python manage.py migrate
-cd $PROJECT_BASE_PATH && $PROJECT_BASE_PATH/venv/bin/python manage.py collectstatic --noinput
+$PROJECT_BASE_PATH/venv/bin/python manage.py migrate
+$PROJECT_BASE_PATH/venv/bin/python manage.py collectstatic --noinput
 
 # Configure supervisor
 sudo cp $PROJECT_BASE_PATH/aws_terraform/deploy/supervisor_profiles_api.conf /etc/supervisor/conf.d/profiles_api.conf
