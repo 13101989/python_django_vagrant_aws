@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-
 PROJECT_GIT_URL='https://github.com/13101989/python_django_vagrant_aws.git'
 PROJECT_BASE_PATH='/usr/local/apps/python_django_vagrant_aws'
 
@@ -20,9 +18,8 @@ python3 -m venv $PROJECT_BASE_PATH/venv
 $PROJECT_BASE_PATH/venv/bin/pip install -r $PROJECT_BASE_PATH/requirements.txt
 $PROJECT_BASE_PATH/venv/bin/pip install uwsgi==2.0.18
 
-# Run migrations and collectstatic
+# Run migration
 $PROJECT_BASE_PATH/venv/bin/python $PROJECT_BASE_PATH/manage.py migrate
-sudo $PROJECT_BASE_PATH/venv/bin/python $PROJECT_BASE_PATH/manage.py collectstatic --noinput
 
 # Configure supervisor
 sudo cp $PROJECT_BASE_PATH/aws_terraform/deploy/supervisor_profiles_api.conf /etc/supervisor/conf.d/profiles_api.conf
@@ -35,3 +32,6 @@ sudo cp $PROJECT_BASE_PATH/aws_terraform/deploy/nginx_profiles_api.conf /etc/ngi
 sudo rm /etc/nginx/sites-enabled/default
 sudo ln -s /etc/nginx/sites-available/profiles_api.conf /etc/nginx/sites-enabled/profiles_api.conf
 sudo systemctl restart nginx
+
+# Run collectstatic
+sudo $PROJECT_BASE_PATH/venv/bin/python $PROJECT_BASE_PATH/manage.py collectstatic --noinput

@@ -1,7 +1,5 @@
 #!usr/bin/env bash
 
-set -e
-
 PROJECT_BASE_PATH='/usr/local/apps/python_django_vagrant_aws'
 
 sudo git pull origin main
