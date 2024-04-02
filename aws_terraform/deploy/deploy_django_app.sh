@@ -18,20 +18,14 @@ python3 -m venv $PROJECT_BASE_PATH/venv
 $PROJECT_BASE_PATH/venv/bin/pip install -r $PROJECT_BASE_PATH/requirements.txt
 $PROJECT_BASE_PATH/venv/bin/pip install uwsgi==2.0.18
 
-# Run migration
-$PROJECT_BASE_PATH/venv/bin/python $PROJECT_BASE_PATH/manage.py migrate
-
-# Configure supervisor
-sudo cp $PROJECT_BASE_PATH/aws_terraform/deploy/supervisor_profiles_api.conf /etc/supervisor/conf.d/profiles_api.conf
-sudo supervisorctl reread
-sudo supervisorctl update
-sudo supervisorctl restart profiles_api
-
 # Configure nginx
 sudo cp $PROJECT_BASE_PATH/aws_terraform/deploy/nginx_profiles_api.conf /etc/nginx/sites-available/profiles_api.conf
 sudo rm /etc/nginx/sites-enabled/default
 sudo ln -s /etc/nginx/sites-available/profiles_api.conf /etc/nginx/sites-enabled/profiles_api.conf
 sudo systemctl restart nginx
 
-# Run collectstatic
-sudo $PROJECT_BASE_PATH/venv/bin/python $PROJECT_BASE_PATH/manage.py collectstatic --noinput
+# Configure supervisor
+sudo cp $PROJECT_BASE_PATH/aws_terraform/deploy/supervisor_profiles_api.conf /etc/supervisor/conf.d/profiles_api.conf
+sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl restart profiles_api
