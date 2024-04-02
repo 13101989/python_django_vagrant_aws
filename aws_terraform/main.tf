@@ -48,10 +48,12 @@ resource "aws_security_group" "django_app_security_group" {
 }
 
 resource "aws_instance" "django_app_ec2_instance" {
-  ami                    = "ami-0d74f1e79c38f2933"
-  instance_type          = "t3.micro"
-  key_name               = aws_key_pair.public_key.key_name
-  security_groups        = [aws_security_group.django_app_security_group.name]
+  ami             = "ami-0d74f1e79c38f2933"
+  instance_type   = "t3.micro"
+  key_name        = aws_key_pair.public_key.key_name
+  security_groups = [aws_security_group.django_app_security_group.name]
+
+  user_data = file("${path.module}/deploy/deploy_django_app.sh")
 
   tags = {
     Name = "DjangoAppInstance"
