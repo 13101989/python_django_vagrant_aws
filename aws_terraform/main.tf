@@ -73,7 +73,7 @@ resource "aws_security_group" "django_app_security_group" {
 }
 
 resource "aws_instance" "django_app_ec2_instance" {
-  ami             = "ami-04f9a173520f395dd"
+  ami             = "ami-023adaba598e661ac"
   instance_type   = "t2.micro"
   key_name        = aws_key_pair.public_key.key_name
   security_groups = [aws_security_group.django_app_security_group.name]
