@@ -1,4 +1,29 @@
+# Define AWS access key ID variable
+variable "AWS_ACCESS_KEY_ID" {
+  description = "AWS access key ID"
+}
+
+# Define AWS secret access key variable
+variable "AWS_SECRET_ACCESS_KEY" {
+  description = "AWS secret access key"
+}
+
+# Configure Terraform settings
 terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+
+  cloud {
+    organization = "my-skillab"
+
+    workspaces {
+      name = "development"
+    }
+  }
 }
 
 provider "aws" {
