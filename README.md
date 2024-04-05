@@ -1,5 +1,5 @@
 
-```
+```bash
 # create vagrant development server
 
 vagrant init ubuntu/bionic64
