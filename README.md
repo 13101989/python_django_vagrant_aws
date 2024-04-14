@@ -1,13 +1,14 @@
+# Create vagrant development server
 
 ```bash
-# create vagrant development server
-
 vagrant init ubuntu/bionic64
 vagrant up
 vagrant ssh
+```
 
-# create django project on vagrant server
+# Create django project on vagrant server
 
+```bash
 cd /vagrant
 python -m venv ~/venv
 source ~/venv/bin/activate
@@ -15,17 +16,25 @@ pip install -r requirments.txt
 
 django-admin.py startproject django_project . 
 python manage.py startapp profiles_api
+```
 
-# run django project
+# Run django project
+
+```bash
 python manage.py runserver 0.0.0.0:8000
+```
 
-# generate and run migration on db
+# Generate and run migration on db
+
+```bash
 python manage.py makemigrations profiles_api
 python manage.py migrate
+```
 
-# create django superuser
+# Create django superuser
+
+```bash
 python manage.py createsuperuser
-
 
 
 # superuser account /admin login data:
